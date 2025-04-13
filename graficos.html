@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+</head>
+<style>
+    html  {
+        height: 100vh;
+    }
+    body {
+        margin:0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: rgb(255, 255, 255);
+        overflow: auto;
+    }
+    h1 {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+    canvas {
+        background-color: #4d4d4d;
+        position: relative;
+        width: 100%;
+        height: auto;
+        color: white;
+
+  
+    }
+    .barra_lateral {
+        width: 20%;
+        background-color: #8000bc;
+        height: 100%;
+
+    }
+    .barra_lateral p{
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        padding-top: 20px;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        background-color: #282828;
+        overflow: auto;
+        align-items: center;
+        gap: 20px;
+       
+    }
+    .box {
+        display: flex;
+        flex-direction: column;
+        box-shadow: #201f1f 0px 0px 20px;
+        width: 100%;
+        max-width: 600px;
+        height: 500px;
+        padding: 10px;
+        background-color: #4d4d4d;
+        border-radius: 20px;
+        margin-top: 30px    ;
+
+        
+    }
+    .box h1 {
+        color: #8f03fa;
+        text-align: center;
+        font-size: 30px;
+        font-weight:800;
+        padding-top: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .box p {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        padding-top: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    </style>
+<body >
+    <div class="container">
+
+    <div class="box">
+        <h1>Gráfico de Linhas</h1>
+        <p>Gráfico de linhas com temperatura e umidade</p>
+        <canvas id="myChart"></canvas>
+    </div>
+        <div class="box">
+            <h1>Gráfico de Barras</h1>
+            <p>Gráfico de barras com temperatura e umidade média</p>
+            <canvas id="myChart2" ></canvas>
+        </div>
+    </div>
+    <div class="barra_lateral">
+        <p> Projeto Inovação</p>
+
+    </div>
+
+      
+    
+</body>
+</html>
+<script>
+const label =[12, 13, 14, 15, 16, 17]
+const data={
+    labels:label,
+    datasets:[{
+        label:'Temperatura',
+        data: [30, 29, 28, 25, 22, 23],
+        fill: false,
+        borderColor: '#8000bc',
+        tension: 0.1
+    },
+    {
+        label: 'Umidade',
+        data:[80,82,80,85,80,83],
+        fill: false,
+        borderColor: '#28AE38',
+        tension: 0.1
+    }
+]
+}
+const config = {
+    type: 'line',
+    data: data,
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white' // Cor do texto da legenda
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: 'white' // Cor do texto do eixo X
+                }
+            },
+            y: {
+                ticks: {
+                    color: 'white' // Cor do texto do eixo Y
+                }
+            }
+        }
+    }
+};
+
+
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+);
+</script>
+<script>
+const label2 =['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho']
+const data2={
+    labels:label2,
+    datasets:[{
+        label:'Temperatura Média',
+        data: [22, 24, 27, 23, 20, 18],
+        fill: false,
+        borderColor: '#8000bc',
+        backgroundColor: `#8000bc`,
+        tension: 0.1,
+
+    },
+    {
+        label: 'Umidade Média',
+        data:[90,89,93,87,88,82],
+        fill: false,
+        borderColor: '#28AE38',
+        backgroundColor: `#28AE38`,
+        tension: 0.1
+    }
+]
+}
+const config2 = {
+    type: 'bar',
+    data: data2,
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white' 
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: 'white' 
+                }
+            },
+            y: {
+                ticks: {
+                    color: 'white' 
+                }
+            }
+        }
+    }
+}
+};
+
+
+const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
+);
+</script>
